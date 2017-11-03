@@ -1,0 +1,17 @@
+{
+	"name": "cerus-uuid",
+	"version": "0.0.1",
+	"description": "The uuid plugin for CerusJS",
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/cerusjs/cerus-uuid.git"
+	},
+	"author": "cerusjs",
+	"bugs": {
+		"url": "https://github.com/cerusjs/cerus-uuid/issues"
+	},
+	"scripts": {},
+	"homepage": "https://github.com/cerusjs/cerus-uuid",
+	"dependencies": {}
+}
