@@ -1,12 +1,12 @@
 module.exports = function() {
-	var self = {};
-
+	var plugin = {};
 	var package = require("./package.json");
 	
-	self.name = package["name"];
-	self.version = package["version"];
+	plugin.name = package["name"];
+	plugin.version = package["version"];
+	plugin.uuid = function(type) {
+		return new (require("./lib/uuid"))(type);
+	}
 
-	self.uuid = require("./lib/uuid");
-
-	return self;
+	return plugin;
 }
