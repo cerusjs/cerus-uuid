@@ -1,6 +1,6 @@
 {
 	"name": "cerus-uuid",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"description": "The uuid plugin for CerusJS",
 	"main": "index.js",
 	"repository": {
