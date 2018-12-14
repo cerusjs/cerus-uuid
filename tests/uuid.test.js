@@ -1,12 +1,12 @@
-var plugin = require("../index")();
-var expect = require("chai").expect;
-var uuid = plugin.uuid;
+const plugin = require("../index")();
+const expect = require("chai").expect;
+const uuid = plugin.uuid;
 
-describe("uuid", function() {
-	describe("constructor", function() {
-		context("with no parameters", function() {
-			it("shouldn't throw any errors", function() {
-				var func = function() {
+describe("uuid", () => {
+	describe("constructor", () => {
+		context("with no parameters", () => {
+			it("shouldn't throw any errors", () => {
+				const func = () => {
 					uuid();
 				}
 
@@ -14,9 +14,9 @@ describe("uuid", function() {
 			});
 		});
 		
-		context("with a custom type", function() {
-			it("shouldn't throw any errors", function() {
-				var func = function() {
+		context("with a custom type", () => {
+			it("shouldn't throw any errors", () => {
+				const func = () => {
 					uuid("v4");
 				}
 
@@ -25,43 +25,47 @@ describe("uuid", function() {
 		});
 	});
 
-	describe("#type", function() {
-		context("with no parameters", function() {
-			it("should return the default type", function() {
-				var uuid_ = uuid();
-				expect(uuid_.type()).to.equal(uuid_._type);
+	describe("#type", () => {
+		context("with no parameters", () => {
+			it("should return the default type", () => {
+				const _uuid = uuid();
+
+				expect(_uuid.type()).to.equal(_uuid._type);
 			});
 		});
 
-		context("with incorrect parameters", function() {
-			it("should return the default type", function() {
-				var uuid_ = uuid();
-				expect(uuid_.type(1234)).to.equal(uuid_._type);
+		context("with incorrect parameters", () => {
+			it("should return the default type", () => {
+				const _uuid = uuid();
+
+				expect(_uuid.type(1234)).to.equal(_uuid._type);
 			});
 		});
 
-		context("with a string as parameters", function() {
-			it("should now use the new type", function() {
-				var uuid_ = uuid();
-				expect(uuid_.type()).to.equal(uuid_._type);
-				uuid_.type("v3");
-				expect(uuid_.type()).to.equal("v3");
+		context("with a string as parameters", () => {
+			it("should now use the new type", () => {
+				const _uuid = uuid();
+
+				expect(_uuid.type()).to.equal(_uuid._type);
+				_uuid.type("v3");
+				expect(_uuid.type()).to.equal("v3");
 			});
 		});
 	});
 
-	describe("#generate", function() {
-		context("with the v1 type", function() {
-			it("should generate an uuid", function() {
-				var uuid_ = uuid("v1").generate();
-				expect(uuid_).to.be.a("string");
+	describe("#generate", () => {
+		context("with the v1 type", () => {
+			it("should generate an uuid", () => {
+				const _uuid = uuid("v1").generate();
+
+				expect(_uuid).to.be.a("string");
 			});
 		});
 
-		context("with the v3 type", function() {
-			context("and no name", function() {
-				it("should throw a TypeError", function() {
-					var func = function() {
+		context("with the v3 type", () => {
+			context("and no name", () => {
+				it("should throw a TypeError", () => {
+					const func = () => {
 						uuid("v3").generate({namespace: "6ba7b810-9dad-11d1-80b4-00c04fd430c8"});
 					}
 
@@ -70,9 +74,9 @@ describe("uuid", function() {
 				
 			});
 
-			context("and no namespace", function() {
-				it("should throw a TypeError", function() {
-					var func = function() {
+			context("and no namespace", () => {
+				it("should throw a TypeError", () => {
+					const func = () => {
 						uuid("v3").generate({name: "test"});
 					}
 
@@ -80,25 +84,27 @@ describe("uuid", function() {
 				});
 			});
 
-			context("and the correct options", function() {
-				it("should generate an uuid", function() {
-					var uuid_ = uuid("v3").generate({name: "test", namespace: "6ba7b810-9dad-11d1-80b4-00c04fd430c8"});
-					expect(uuid_).to.be.a("string");
+			context("and the correct options", () => {
+				it("should generate an uuid", () => {
+					const _uuid = uuid("v3").generate({name: "test", namespace: "6ba7b810-9dad-11d1-80b4-00c04fd430c8"});
+
+					expect(_uuid).to.be.a("string");
 				});
 			})
 		});
 
-		context("with the v4 type", function() {
-			it("should generate an uuid", function() {
-				var uuid_ = uuid("v4").generate();
-				expect(uuid_).to.be.a("string");
+		context("with the v4 type", () => {
+			it("should generate an uuid", () => {
+				const _uuid = uuid("v4").generate();
+
+				expect(_uuid).to.be.a("string");
 			});
 		});
 
-		context("with the v5 type", function() {
-			context("and no name", function() {
-				it("should throw a TypeError", function() {
-					var func = function() {
+		context("with the v5 type", () => {
+			context("and no name", () => {
+				it("should throw a TypeError", () => {
+					const func = () => {
 						uuid("v5").generate({namespace: "6ba7b810-9dad-11d1-80b4-00c04fd430c8"});
 					}
 
@@ -107,9 +113,9 @@ describe("uuid", function() {
 				
 			});
 
-			context("and no namespace", function() {
-				it("should throw a TypeError", function() {
-					var func = function() {
+			context("and no namespace", () => {
+				it("should throw a TypeError", () => {
+					const func = () => {
 						uuid("v5").generate({name: "test"});
 					}
 
@@ -117,20 +123,22 @@ describe("uuid", function() {
 				});
 			});
 
-			context("and the correct options", function() {
-				it("should generate an uuid", function() {
-					var uuid_ = uuid("v5").generate({name: "test", namespace: "6ba7b810-9dad-11d1-80b4-00c04fd430c8"});
-					expect(uuid_).to.be.a("string");
+			context("and the correct options", () => {
+				it("should generate an uuid", () => {
+					const _uuid = uuid("v5").generate({name: "test", namespace: "6ba7b810-9dad-11d1-80b4-00c04fd430c8"});
+
+					expect(_uuid).to.be.a("string");
 				});
 			})
 		});
 
-		context("causing a stack overflow by regenerating a fixed uuid", function() {
-			it("should throw an Error", function() {
-				var func = function() {
-					var uuid_ = uuid("v5");
-					uuid_.generate({name: "test", namespace: "6ba7b810-9dad-11d1-80b4-00c04fd430c8"});
-					uuid_.generate({name: "test", namespace: "6ba7b810-9dad-11d1-80b4-00c04fd430c8"});
+		context("causing a stack overflow by regenerating a fixed uuid", () => {
+			it("should throw an Error", () => {
+				const func = () => {
+					const _uuid = uuid("v5");
+
+					_uuid.generate({name: "test", namespace: "6ba7b810-9dad-11d1-80b4-00c04fd430c8"});
+					_uuid.generate({name: "test", namespace: "6ba7b810-9dad-11d1-80b4-00c04fd430c8"});
 				}
 				
 				expect(func).to.throw();
@@ -138,30 +146,10 @@ describe("uuid", function() {
 		});
 	});
 
-	describe("#add", function() {
-		context("with no parameters", function() {
-			it("should throw a TypeError", function() {
-				var func = function() {
-					uuid().add();
-				}
-
-				expect(func).to.throw();
-			});
-		});
-
-		context("with incorrect parameters", function() {
-			it("should throw a TypeError", function() {
-				var func = function() {
-					uuid().add(1234);
-				}
-
-				expect(func).to.throw();
-			});
-		});
-
-		context("with an incorrect uuid (format)", function() {
-			it("should throw an Error", function() {
-				var func = function() {
+	describe("#add", () => {
+		context("with an incorrect uuid (format)", () => {
+			it("should throw an Error", () => {
+				const func = () => {
 					uuid().add("abcd-efgh-ijkl-mnop");
 				}
 
@@ -169,9 +157,9 @@ describe("uuid", function() {
 			});
 		});
 
-		context("with an incorrect uuid (version)", function() {
-			it("should throw an Error", function() {
-				var func = function() {
+		context("with an incorrect uuid (version)", () => {
+			it("should throw an Error", () => {
+				const func = () => {
 					uuid().add("6ba7b810-9dad-11d1-80b4-00c04fd430c8");
 				}
 
@@ -179,21 +167,23 @@ describe("uuid", function() {
 			});
 		});
 
-		context("with a correct uuid", function() {
-			it("should add the uuid", function() {
-				var uuid_ = uuid();
-				uuid_.add("6ba7b810-9dad-41d1-80b4-00c04fd430c8");
+		context("with a correct uuid", () => {
+			it("should add the uuid", () => {
+				const _uuid = uuid();
 
-				expect(uuid_._uuids.length).to.equal(1);
+				_uuid.add("6ba7b810-9dad-41d1-80b4-00c04fd430c8");
+
+				expect(_uuid._uuids.length).to.equal(1);
 			});
 		});
 
-		context("with an already added uuid", function() {
-			it("should throw an Error", function() {
-				var func = function() {
-					var uuid_ = uuid();
-					uuid_.add("6ba7b810-9dad-41d1-80b4-00c04fd430c8");
-					uuid_.add("6ba7b810-9dad-41d1-80b4-00c04fd430c8");
+		context("with an already added uuid", () => {
+			it("should throw an Error", () => {
+				const func = () => {
+					const _uuid = uuid();
+
+					_uuid.add("6ba7b810-9dad-41d1-80b4-00c04fd430c8");
+					_uuid.add("6ba7b810-9dad-41d1-80b4-00c04fd430c8");
 				}
 
 				expect(func).to.throw();
@@ -201,147 +191,87 @@ describe("uuid", function() {
 		});
 	});
 
-	describe("#remove", function() {
-		context("with no parameters", function() {
-			it("should throw a TypeError", function() {
-				var func = function() {
-					uuid().remove();
+	describe("#remove", () => {
+		context("with an uuid that hasn't been added", () => {
+			it("should throw an Error", () => {
+				const func = () => {
+					const _uuid = uuid();
+
+					_uuid.remove("x");
 				}
 
 				expect(func).to.throw();
 			});
 		});
 
-		context("with incorrect parameters", function() {
-			it("should throw a TypeError", function() {
-				var func = function() {
-					uuid().remove(1234);
-				}
+		context("with an uuid that has been added", () => {
+			it("should remove the uuid", () => {
+				const _uuid = uuid();
 
-				expect(func).to.throw();
-			});
-		});
-
-		context("with an uuid that hasn't been added", function() {
-			it("should throw an Error", function() {
-				var func = function() {
-					var uuid_ = uuid();
-					uuid_.remove("x");
-				}
-
-				expect(func).to.throw();
-			});
-		});
-
-		context("with an uuid that has been added", function() {
-			it("should remove the uuid", function() {
-				var uuid_ = uuid();
-				uuid_.add("6ba7b810-9dad-41d1-80b4-00c04fd430c8");
-				expect(uuid_._uuids.length).to.equal(1);
-				uuid_.remove("6ba7b810-9dad-41d1-80b4-00c04fd430c8");
-				expect(uuid_._uuids.length).to.equal(0);
+				_uuid.add("6ba7b810-9dad-41d1-80b4-00c04fd430c8");
+				expect(_uuid._uuids.length).to.equal(1);
+				_uuid.remove("6ba7b810-9dad-41d1-80b4-00c04fd430c8");
+				expect(_uuid._uuids.length).to.equal(0);
 			});
 		});
 	});
 
-	describe("#has", function() {
-		context("with no parameters", function() {
-			it("should throw a TypeError", function() {
-				var func = function() {
-					uuid().has();
-				}
-
-				expect(func).to.throw();
-			});
-		});
-
-		context("with incorrect parameters", function() {
-			it("should throw a TypeError", function() {
-				var func = function() {
-					uuid().has(1234);
-				}
-
-				expect(func).to.throw();
-			});
-		});
-
-		context("with a non-existant uuid", function() {
-			it("should throw an Error", function() {
+	describe("#has", () => {
+		context("with a non-existant uuid", () => {
+			it("should throw an Error", () => {
 				expect(uuid().has("x")).to.deep.equal(false);
 			});
 		});
 
-		context("with a existant uuid", function() {
-			it("should remove the uuid", function() {
-				var uuid_ = uuid();
-				uuid_.add("6ba7b810-9dad-41d1-80b4-00c04fd430c8");
-				expect(uuid_.has("6ba7b810-9dad-41d1-80b4-00c04fd430c8")).to.deep.equal(true);
+		context("with a existant uuid", () => {
+			it("should remove the uuid", () => {
+				const _uuid = uuid();
+
+				_uuid.add("6ba7b810-9dad-41d1-80b4-00c04fd430c8");
+				expect(_uuid.has("6ba7b810-9dad-41d1-80b4-00c04fd430c8")).to.deep.equal(true);
 			});
 		});
 	});
 
-	describe("#clear", function() {
-		context("with no added uuids", function() {
-			it("should still have 0 uuids", function() {
-				var uuid_ = uuid();
+	describe("#clear", () => {
+		context("with no added uuids", () => {
+			it("should still have 0 uuids", () => {
+				const _uuid = uuid();
 
-				expect(uuid_._uuids.length).to.equal(0);
-
-				uuid_.clear();
-				expect(uuid_._uuids.length).to.equal(0);
+				expect(_uuid._uuids.length).to.equal(0);
+				_uuid.clear();
+				expect(_uuid._uuids.length).to.equal(0);
 			});
 		});
 
-		context("with one added uuid", function() {
-			it("should now have 0 uuids", function() {
-				var uuid_ = uuid();
+		context("with one added uuid", () => {
+			it("should now have 0 uuids", () => {
+				const _uuid = uuid();
 
-				uuid_.add("6ba7b810-9dad-41d1-80b4-00c04fd430c8");
-				expect(uuid_._uuids.length).to.equal(1);
-
-				uuid_.clear();
-				expect(uuid_._uuids.length).to.equal(0);
+				_uuid.add("6ba7b810-9dad-41d1-80b4-00c04fd430c8");
+				expect(_uuid._uuids.length).to.equal(1);
+				_uuid.clear();
+				expect(_uuid._uuids.length).to.equal(0);
 			});
 		});
 
-		context("with multiple added uuids", function() {
-			it("should now have 0 uuids", function() {
-				var uuid_ = uuid();
+		context("with multiple added uuids", () => {
+			it("should now have 0 uuids", () => {
+				const _uuid = uuid();
 
-				uuid_.add("6ba7b810-9dad-41d1-80b4-00c04fd430c8");
-				uuid_.add("6ba7b811-9dad-41d1-80b4-00c04fd430c8");
-				expect(uuid_._uuids.length).to.equal(2);
-
-				uuid_.clear();
-				expect(uuid_._uuids.length).to.equal(0);
+				_uuid.add("6ba7b810-9dad-41d1-80b4-00c04fd430c8");
+				_uuid.add("6ba7b811-9dad-41d1-80b4-00c04fd430c8");
+				expect(_uuid._uuids.length).to.equal(2);
+				_uuid.clear();
+				expect(_uuid._uuids.length).to.equal(0);
 			});
 		});
 	});
 
-	describe("#version", function() {
-		context("with no parameters", function() {
-			it("should throw a TypeError", function() {
-				var func = function() {
-					uuid().version();
-				}
-
-				expect(func).to.throw();
-			});
-		});
-
-		context("with incorrect parameters", function() {
-			it("should throw a TypeError", function() {
-				var func = function() {
-					uuid().version(1234);
-				}
-
-				expect(func).to.throw();
-			});
-		});
-
-		context("with an incorrect uuid", function() {
-			it("should throw an Error", function() {
-				var func = function() {
+	describe("#version", () => {
+		context("with an incorrect uuid", () => {
+			it("should throw an Error", () => {
+				const func = () => {
 					uuid().version("x");
 				}
 
@@ -349,9 +279,9 @@ describe("uuid", function() {
 			});
 		});
 
-		context("with an incorrect version number", function() {
-			it("should throw an Error", function() {
-				var func = function() {
+		context("with an incorrect version number", () => {
+			it("should throw an Error", () => {
+				const func = () => {
 					uuid().version("6ba7b810-9dad-61d1-80b4-00c04fd430c8");
 				}
 
@@ -359,53 +289,53 @@ describe("uuid", function() {
 			});
 		});
 
-		context("with a correct uuid (v1)", function() {
-			it("should return \"v1\"", function() {
+		context("with a correct uuid (v1)", () => {
+			it("should return \"v1\"", () => {
 				expect(uuid().version("6ba7b810-9dad-11d1-80b4-00c04fd430c8")).to.equal("v1");
 			});
 		});
 
-		context("with a correct uuid (v3)", function() {
-			it("should return \"v3\"", function() {
+		context("with a correct uuid (v3)", () => {
+			it("should return \"v3\"", () => {
 				expect(uuid().version("6ba7b810-9dad-31d1-80b4-00c04fd430c8")).to.equal("v3");
 			});
 		});
 
-		context("with a correct uuid (v4)", function() {
-			it("should return \"v4\"", function() {
+		context("with a correct uuid (v4)", () => {
+			it("should return \"v4\"", () => {
 				expect(uuid().version("6ba7b810-9dad-41d1-80b4-00c04fd430c8")).to.equal("v4");
 			});
 		});
 
-		context("with a correct uuid (v5)", function() {
-			it("should return \"v5\"", function() {
+		context("with a correct uuid (v5)", () => {
+			it("should return \"v5\"", () => {
 				expect(uuid().version("6ba7b810-9dad-51d1-80b4-00c04fd430c8")).to.equal("v5");
 			});
 		});
 	});
 
-	describe("#check", function() {
-		context("with no parameters", function() {
-			it("should return false", function() {
+	describe("#check", () => {
+		context("with no parameters", () => {
+			it("should return false", () => {
 				expect(uuid().check()).to.deep.equal(false);
 			});
 		});
 
-		context("with incorrect parameters", function() {
-			it("should return false", function() {
+		context("with incorrect parameters", () => {
+			it("should return false", () => {
 				expect(uuid().check(1234)).to.deep.equal(false);
 			});
 		});
 
-		context("with an incorrect uuid", function() {
-			it("should return false", function() {
+		context("with an incorrect uuid", () => {
+			it("should return false", () => {
 				expect(uuid().check("x")).to.deep.equal(false);
 			});
 		});
 
-		context("with a correct uuid but incorrect version", function() {
-			it("should throw a TypeError", function() {
-				var func = function() {
+		context("with a correct uuid but incorrect version", () => {
+			it("should throw a TypeError", () => {
+				const func = () => {
 					uuid().check("6ba7b810-9dad-61d1-80b4-00c04fd430c8")
 				}
 
@@ -413,26 +343,26 @@ describe("uuid", function() {
 			});
 		});
 
-		context("with the wrong type", function() {
-			it("should return false", function() {
+		context("with the wrong type", () => {
+			it("should return false", () => {
 				expect(uuid().check("6ba7b810-9dad-11d1-80b4-00c04fd430c8")).to.deep.equal(false);
 			});
 		});
 
-		context("with a correct v1 uuid (and v1 type)", function() {
-			it("should return true", function() {
+		context("with a correct v1 uuid (and v1 type)", () => {
+			it("should return true", () => {
 				expect(uuid("v1").check("6ba7b810-9dad-11d1-80b4-00c04fd430c8")).to.deep.equal(true);
 			});
 		});
 
-		context("with a v4 uuid but an incorrect variant", function() {
-			it("should return false", function() {
+		context("with a v4 uuid but an incorrect variant", () => {
+			it("should return false", () => {
 				expect(uuid("v1").check("6ba7b810-9dad-41d1-10b4-00c04fd430c8")).to.deep.equal(false);
 			});
 		});
 
-		context("with a correct v4 uuid", function() {
-			it("should return true", function() {
+		context("with a correct v4 uuid", () => {
+			it("should return true", () => {
 				expect(uuid().check("6ba7b810-9dad-41d1-80b4-00c04fd430c8")).to.deep.equal(true);
 			});
 		});
